@@ -1,0 +1,54 @@
+{
+  "galleries": [
+    {
+      "galleryId": "north",
+      "galleryName": "....",
+      "region": "Northern Region",
+      "stations": [
+        {
+          "stationId": "north_1",
+          "stationTitle": "Station 1 title",
+          "text": "Documentation text for station 1.",
+          "media": "north_01",
+          "mediaType": "image"
+        },
+        {
+          "stationId": "north_2",
+          "stationTitle": "Station 2 title",
+          "text": "Documentation text for station 2.",
+          "media": "north_02.mp4",
+          "mediaType": "video"
+        },
+        {
+          "stationId": "north_3",
+          "stationTitle": "Station 3 title",
+          "text": "Documentation text for station 3.",
+          "media": "north_03",
+          "mediaType": "image"
+        },
+        {
+          "stationId": "north_4",
+          "stationTitle": "Station 4 title",
+          "text": "Documentation text for station 4.",
+          "media": "north_04",
+          "mediaType": "image"
+        }
+      ],
+      "puzzle": {
+        "puzzleId": "north_puzzle",
+        "type": "jigsaw",
+        "image": "north_puzzle",
+        "rows": 3,
+        "columns": 3,
+        "appearsAfterStation": "north_2",
+        "rewardStickerId": "sticker_north"
+      }
+    }
+  ],
+  "rewards": [
+    {
+      "rewardId": "sticker_north",
+      "image": "sticker_north"
+    }
+  ]
+}
