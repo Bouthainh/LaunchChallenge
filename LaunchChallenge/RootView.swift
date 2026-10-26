@@ -21,7 +21,9 @@ struct RootView : View {
                     Label("Bag" , image: "tab_bag")
                 }
                 
-        }.tint(AppTheme.tabSelected)
+        }
+        .tint(AppTheme.tabSelected)
+        .environment(\.layoutDirection, .rightToLeft) //temp for test "layout", will be removed after localization
         
 
     }

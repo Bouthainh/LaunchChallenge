@@ -7,7 +7,7 @@ struct PuzzleModel : Codable {
     let image : String
     let rows : Int
     let columns : Int
-    let appearsAfterStation : String
+    let appearsAfterStationId : String 
     let rewardStickerId : String
     
 }
