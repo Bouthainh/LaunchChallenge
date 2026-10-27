@@ -15,11 +15,14 @@ enum Region: String, CaseIterable, Identifiable {
         }
     }
 
-    // The link between the map and your JSON
+    // The link between the map and JSON data by ids
     var galleryId: String? {
         switch self {
+        case .north:   return "north"
         case .central: return "najd"
-        default:       return nil
+        case .east:    return "east"
+        case .west:    return "west"
+        case .south:   return "south"
         }
     }
 

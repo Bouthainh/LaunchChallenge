@@ -21,7 +21,7 @@ enum AppTheme {
     
     //Map Colors
     static let patternBase = Color ("PrimaryYellow")
-    static let patternInk = Color("patternInk")
+    static let patternInk = Color("Patternink")
     static let regionStroke = Color("ButterYellow")
 
 }
