@@ -26,7 +26,7 @@ struct GalleryIntroView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 8) {
-                    Text("أهلًا بك في")
+                    Text("أهلًا بـك في")
                         .font(AppTheme.MainTitle)
                         .foregroundStyle(AppTheme.bodyText)
 
@@ -39,12 +39,12 @@ struct GalleryIntroView: View {
                     .font(AppTheme.Title)
                     .foregroundStyle(AppTheme.bodyText)
 
-                Text("بانتظارك \(viewModel.stations.count) محطات ولغز غامض")
+                Text("بانتظــارك \(viewModel.stations.count) محطات ولغز غامــض")
                     .font(AppTheme.Title)
                     .foregroundStyle(AppTheme.bodyText)
                     .multilineTextAlignment(.leading)
 
-                Button("ابدأ رحلتك") {
+                Button("ابدأ رحلتــك") {
                     showGallery = true
                 }
                 .font(AppTheme.body)

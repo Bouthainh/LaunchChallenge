@@ -13,11 +13,14 @@ enum AppTheme {
     static let MainTitle = Font.custom("thmanyahserifdisplay-Bold", size: 28)
     static let body = Font.custom("thmanyahseriftext-Regular", size: 16)
     static let Mainbody = Font.custom("thmanyahseriftext-Regular", size: 24)
+    static let displayFontName = "thmanyahserifdisplay-Bold"
+    static let textFontName = "thmanyahseriftext-Regular"
 
     //Font Colors
     static let titleText = Color("PrimaryYellow")
     static let bodyText = Color("ButterYellow")
     static let titleHighlight = Color("TitleHighlight")
+    
     
     //Map Colors
     static let patternBase = Color ("PrimaryYellow")
