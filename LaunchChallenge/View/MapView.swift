@@ -9,11 +9,11 @@ struct MapView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 8) {
 
-                Text("المملكة العربية السعودية")
+                Text("المملكة العربية السعوديـــة")
                     .font(AppTheme.MainTitle)
                     .foregroundStyle(AppTheme.titleText)
 
-                Text("خريطة الزخارف التراثية")
+                Text("خريطـة الزخارف التراثيـة")
                     .font(AppTheme.Mainbody)
                     .foregroundStyle(AppTheme.bodyText)
                     .multilineTextAlignment(.leading)
@@ -31,7 +31,7 @@ struct MapView: View {
                         .scaledToFit()
                         .frame(width: 70, height: 70)
 
-                    Text("اختر منطقة لكي تبدأ رحلتك الشيقة في معارض الزخارف السعودية")
+                    Text("اختر منطقـة لكي تبدأ رحلتـك الشيقة في معارض الزخـــارف السعوديـــة")
                         .font(AppTheme.body)
                         .foregroundStyle(AppTheme.bodyText)
                 }

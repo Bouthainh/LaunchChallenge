@@ -26,6 +26,9 @@
 			exceptions = (
 				0A2B7BD9308E18DC002ED0EC /* Exceptions for "LaunchChallenge" folder in "LaunchChallenge" target */,
 			);
+			explicitFileTypes = {
+				Content/Music/background_music.mp3 = audio.mp3;
+			};
 			path = LaunchChallenge;
 			sourceTree = "<group>";
 		};
