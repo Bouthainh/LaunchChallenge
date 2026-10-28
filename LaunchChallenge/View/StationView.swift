@@ -4,6 +4,17 @@ import SwiftUI
 struct StationView: View {
 
     let station: StationModel
+    //  lock state
+       @ObservedObject private var store = UnlockStore.shared
+       @State private var showAlert = false
+       @State private var showPuzzle = false
+       private let stationsBeforeLock = 2        // stations 1 and 2 are free
+       private let stationIndex: Int             // 0 = 1st station, 1 = 2nd, 2 = 3rd...
+    // stations from the 3rd onward are locked until the puzzle is solved
+       private var isLocked: Bool {
+           !store.isUnlocked && stationIndex >= stationsBeforeLock
+       }
+
 
     //the interface states:
     @State private var isExpanded = false //whether the text is expanded
@@ -23,6 +34,13 @@ struct StationView: View {
         var text = AttributedString(station.stationTitle)
         text.backgroundColor = AppTheme.titleHighlight
         return text
+    }
+    // finds this station's position inside its gallery
+    init(station: StationModel) {
+        self.station = station
+        self.stationIndex = ContentLoader.load()?.galleries
+            .compactMap { $0.stations.firstIndex(where: { $0.stationId == station.stationId }) }
+            .first ?? 0
     }
 
     //body text style and appearence
@@ -119,6 +137,30 @@ struct StationView: View {
         }
         .ignoresSafeArea(edges: .top)
         .screenBackground()
+        
+        // lock page covers the whole station
+                .overlay {
+                    if isLocked {
+                        LockedStationView()
+                    }
+                }
+                // show the pop-up automatically after 3 seconds
+                .task(id: isLocked) {
+                    guard isLocked else { return }
+                    try? await Task.sleep(for: .seconds(1))
+                    guard !Task.isCancelled else { return }
+                    withAnimation { showAlert = true }
+                }
+                // pop-up on top of the lock
+                .overlay {
+                    if showAlert {
+                        MysteryAlertView(
+                            onYes: { showPuzzle = true },
+                            onNo: { withAnimation { showAlert = false } }
+                        )
+                        .transition(.opacity)
+                    }
+                }
     }
 }
 
