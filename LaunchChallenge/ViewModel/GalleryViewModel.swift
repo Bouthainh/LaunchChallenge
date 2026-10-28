@@ -3,7 +3,12 @@ import Combine
 
 //ObservableObject can publish changes for UI to observe
 class GalleryViewModel: ObservableObject {
-
+    
+    // the station the lock sits after (appearsAfterStationId)
+    var stationBeforeLock: StationModel? {
+        guard let id = gallery?.puzzle.appearsAfterStationId else { return nil }
+        return stations.first { $0.stationId == id }
+    }
     //store the chosen gallery info
     let gallery: GalleryModel?
     @Published var currentIndex = 0
@@ -17,4 +22,12 @@ class GalleryViewModel: ObservableObject {
     var stations: [StationModel] {
         gallery?.stations ?? []
     }
+    
+    func isLocked(_ index: Int, store: ProgressStore) -> Bool {
+        guard let gallery,
+              let after = stations.firstIndex(where: { $0.stationId == gallery.puzzle.appearsAfterStationId })
+        else { return false }
+        return index > after && !store.has(gallery.puzzle.rewardStickerId)
+    }
+
 }

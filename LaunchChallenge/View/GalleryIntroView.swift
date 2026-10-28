@@ -6,14 +6,20 @@ struct GalleryIntroView: View {
 
     @StateObject private var viewModel: GalleryViewModel
     @State private var showGallery = false
-
+    
     private let bannerHeight: CGFloat = 200
 
+    @Environment(ProgressStore.self) private var store
+
+ 
     init(region: Region, galleryId: String) {
         self.region = region
         _viewModel = StateObject(wrappedValue: GalleryViewModel(galleryId: galleryId))
     }
-
+    
+    private var isExplored: Bool {
+        store.completed.contains(viewModel.gallery?.galleryId ?? "")
+    }
     var body: some View {
         VStack(spacing: 0) {
 
@@ -44,7 +50,7 @@ struct GalleryIntroView: View {
                     .foregroundStyle(AppTheme.bodyText)
                     .multilineTextAlignment(.leading)
 
-                Button("ابدأ رحلتــك") {
+                Button(isExplored ? "استكشـف مجــددًا" : "ابدأ رحلتــك") {
                     showGallery = true
                 }
                 .font(AppTheme.body)
