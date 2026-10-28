@@ -3,7 +3,7 @@ import SwiftUI
 /// The full puzzle page, built only from AppTheme / CanvasPalette (via PuzzleStyle).
 /// Title, subtitle and instruction are parameters, so every region reuses this screen.
 struct PuzzleScreen: View {
-    let puzzle: PuzzleDefinition
+    let puzzle: PuzzleModel
     let rewardImage: String
     let title: String      // e.g. "Najd Mystery!": pass a different title per region
     var subtitle = "Put the pieces together and solve the mystery to earn your stamp"
@@ -286,7 +286,7 @@ struct AppTabBar: View {
 
 #Preview {
     PuzzleScreen(
-        puzzle: PuzzleDefinition(puzzleId: "najd_puzzle", type: "jigsaw", image: "najd_puzzle",
+        puzzle: PuzzleModel(puzzleId: "najd_puzzle", type: "jigsaw", image: "najd_puzzle",
                                  rows: 4, columns: 3,
                                  appearsAfterStationId: "najd_2", rewardStickerId: "sticker_najd"),
         rewardImage: "sticker_najd",

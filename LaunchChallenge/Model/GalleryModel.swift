@@ -5,7 +5,7 @@ struct GalleryModel: Codable {
     let galleryName: String
     let region: String
     let stations: [StationModel]
-    let puzzle: PuzzleDefinition
+    let puzzle: PuzzleModel
 }
     
 

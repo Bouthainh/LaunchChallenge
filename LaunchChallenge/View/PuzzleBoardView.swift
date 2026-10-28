@@ -5,7 +5,7 @@ import AudioToolbox
 /// like the design, and snap into place when dropped near their correct slot.
 /// No timer, no score, no penalties.
 struct PuzzleBoardView: View {
-    let puzzle: PuzzleDefinition
+    let puzzle: PuzzleModel
     let tile: CGFloat            // size of one square tile, in points
     let pad: CGFloat             // space between the frame and the grid
     let soundEnabled: Bool
@@ -23,7 +23,7 @@ struct PuzzleBoardView: View {
     @State private var dragging: Int?
     private let space = "board"
 
-    init(puzzle: PuzzleDefinition,
+    init(puzzle: PuzzleModel,
          tile: CGFloat,
          pad: CGFloat = 22,
          soundEnabled: Bool = true,
@@ -134,7 +134,7 @@ struct PuzzlePieceView: View {
 }
 #Preview {
     PuzzleBoardView(
-        puzzle: PuzzleDefinition(
+        puzzle: PuzzleModel(
             puzzleId: "najd_puzzle", type: "jigsaw", image: "najd_puzzle",
             rows: 4, columns: 3,
             appearsAfterStationId: "najd_2", rewardStickerId: "sticker_najd"
