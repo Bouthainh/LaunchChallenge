@@ -26,5 +26,22 @@ enum AppTheme {
     static let patternBase = Color ("PrimaryYellow")
     static let patternInk = Color("Patternink")
     static let regionStroke = Color("ButterYellow")
+    
+    //Puzzel Styles
+    static let boardBorder = titleText
+    static let boardFill = Color.white.opacity(0.17)
+    static let instructionText = Color("LightGreen")
+    static let instructionFont = Font.custom(displayFontName, size: 17)
+    
+    
+    //Bag Screen Styles
+    static let cellFill      = Color.white.opacity(0.06)
+    static let containerFill = Color.white.opacity(0.04)
+    static let cellBorder    = regionStroke.opacity(0.35)
+    static let divider       = bodyText.opacity(0.25)
+    static let track         = Color.white.opacity(0.15)
+    static let progressFill  = Color("LightGreen")
+    static let chipIdle      = Color.white.opacity(0.12)
+    static let onChip        = background
 
 }

@@ -4,6 +4,9 @@ import PencilKit
 @Observable
 final class CanvasViewModel {
 
+    var showTitle = true
+    var showSubtitle = true
+    
     enum Sheet: String, Identifiable {
         case bag, colors, font
         var id: String { rawValue }
@@ -20,7 +23,6 @@ final class CanvasViewModel {
     var textDraft = ""
     var editingID: UUID?
 
-    // *****> For now all sticker is available. Later: only the collected ones from the progress store 
     var availableStickers: [RewardModel] {
         ContentLoader.load()?.rewards ?? []
     }

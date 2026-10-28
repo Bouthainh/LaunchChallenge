@@ -2,6 +2,10 @@ import SwiftUI
 
 struct MapView: View {
     @State private var vm = MapViewModel()
+    
+    @Environment(ProgressStore.self) private var store
+    @State private var showFinale = false
+    private let totalGalleries = ContentLoader.load()?.galleries.count ?? 0
 
     var body: some View {
         @Bindable var vm = vm
@@ -55,11 +59,33 @@ struct MapView: View {
             .onChange(of: vm.openRegion) { _, newValue in
                 if newValue == nil { vm.regionClosed() }
             }
+            .onAppear { checkFinale() }
+            .overlay {
+                if showFinale {
+                    FinaleView {
+                        store.markFinaleShown()
+                        withAnimation { showFinale = false }
+                    }
+                    .transition(.opacity)
+                }
+            }
         }
         .preferredColorScheme(.dark)
+        .environment(vm)
+    }
+    
+    private func checkFinale() {
+        guard totalGalleries > 0,
+              store.completed.count >= totalGalleries,
+              !store.finaleShown else { return }
+        Task {
+            try? await Task.sleep(for: .seconds(0.6))
+            withAnimation { showFinale = true }
+        }
     }
 }
 
 #Preview {
     MapView()
+        .environment(ProgressStore())
 }

@@ -2,6 +2,8 @@ import SwiftUI
 
 struct CanvasView: View {
     @State private var vm = CanvasViewModel()
+    
+    @Environment(ProgressStore.self) private var store
 
     var body: some View {
         @Bindable var vm = vm
@@ -44,19 +46,33 @@ struct CanvasView: View {
                 .onTapGesture { vm.selectedID = nil }
             
             VStack(alignment: .leading, spacing: 8) {
-                Text("لوحتــك")
-                    .font(.custom(AppTheme.displayFontName, size: 35))
-                    .foregroundStyle(AppTheme.titleText)
-                Text("أطلق إبداعــك… هذه مساحتــك الخاصــة")
-                    .font(.custom(AppTheme.textFontName, size: 22))
-                    .foregroundStyle(AppTheme.bodyText)
+                if vm.showTitle {
+                    Text("لوحتــك")
+                        .font(.custom(AppTheme.displayFontName, size: 35))
+                        .foregroundStyle(AppTheme.titleText)
+                        .contextMenu {
+                            Button(role: .destructive) { vm.showTitle = false } label: {
+                                Label("حذف", systemImage: "trash")
+                            }
+                        }
+                }
+                if vm.showSubtitle {
+                    Text("أطلق إبداعــك… هذه مساحتــك الخاصــة")
+                        .font(.custom(AppTheme.textFontName, size: 22))
+                        .foregroundStyle(AppTheme.bodyText)
+                        .contextMenu {
+                            Button(role: .destructive) { vm.showSubtitle = false } label: {
+                                Label("حذف", systemImage: "trash")
+                            }
+                        }
+                }
             }
-            
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 24)
             .padding(.top, 170)
             .frame(maxHeight: .infinity, alignment: .top)
-            .allowsHitTesting(false)
+            .allowsHitTesting(vm.showTitle || vm.showSubtitle)
+            .contentShape(Rectangle().inset(by: 0))
             
             
             ForEach($vm.elements) { $element in
@@ -144,7 +160,7 @@ struct CanvasView: View {
     private func sheetContent(_ sheet: CanvasViewModel.Sheet, vm: CanvasViewModel) -> some View {
         switch sheet {
         case .bag:
-            BagPickerSheet(items: vm.availableStickers) { sticker in
+            BagPickerSheet(items: vm.availableStickers.filter { store.has($0.rewardId) }) { sticker in
                 vm.addSticker(sticker)
                 vm.sheet = nil
             }
@@ -170,4 +186,5 @@ struct CanvasView: View {
 
 #Preview {
     CanvasView()
+        .environment(ProgressStore())
 }
