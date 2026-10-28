@@ -26,5 +26,16 @@ enum AppTheme {
     static let patternBase = Color ("PrimaryYellow")
     static let patternInk = Color("Patternink")
     static let regionStroke = Color("ButterYellow")
+    
+    
+    //Bag Colors
+    static let cellFill      = Color.white.opacity(0.06)
+    static let containerFill = Color.white.opacity(0.04)
+    static let cellBorder    = AppTheme.regionStroke.opacity(0.35)
+    static let divider       = AppTheme.bodyText.opacity(0.25)
+    static let track         = Color.white.opacity(0.15)
+    static let progressFill  = AppTheme.titleText
+    static let chipIdle      = Color.white.opacity(0.12)
+    static let onChip        = AppTheme.background
 
 }

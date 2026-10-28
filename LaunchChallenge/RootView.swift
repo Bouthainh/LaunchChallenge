@@ -4,6 +4,8 @@ import SwiftUI
 struct RootView: View {
 
     @State private var sound = SoundManager()
+    
+    @State private var progress = ProgressStore()
 
     var body: some View {
 
@@ -23,10 +25,20 @@ struct RootView: View {
                 }
         }
         .tint(AppTheme.tabSelected)
-        .environment(\.layoutDirection, .rightToLeft) //temp for test "layout", will be removed after localization
+        .environment(\.layoutDirection, .rightToLeft)
+        //temp for test "layout", will be removed after localization
         
         .environment(sound)
-        .onAppear { sound.start() }
+        .environment(progress)
+        .onAppear { sound.start()
+            #if DEBUG
+            progress.seedDemoIfEmpty()           //بياانات تجريبيه
+                       #endif
+            
+            
+            
+            
+        }
         .overlay(alignment: .topLeading) {
             SoundButton()
                 .padding(.leading, 20)
