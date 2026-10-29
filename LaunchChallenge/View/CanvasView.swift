@@ -12,7 +12,6 @@ struct CanvasView: View {
             AppTheme.background.ignoresSafeArea()
             canvas(vm: vm)
         }
-        
         .sheet(item: $vm.sheet) { sheet in
             sheetContent(sheet, vm: vm)
         }
@@ -25,7 +24,10 @@ struct CanvasView: View {
                 vm.editingID = nil
             }
         }
-
+        .onDisappear { vm.save() }
+        .onChange(of: vm.isDrawing) { _, drawing in if !drawing { vm.save() } }
+        .onChange(of: vm.sheet) { _, s in if s == nil { vm.save() } }
+        .onChange(of: vm.selectedID) { _, _ in vm.save() }
     }
 
     private func canvas(vm: CanvasViewModel) -> some View {
@@ -51,7 +53,7 @@ struct CanvasView: View {
                         .font(.custom(AppTheme.displayFontName, size: 35))
                         .foregroundStyle(AppTheme.titleText)
                         .contextMenu {
-                            Button(role: .destructive) { vm.showTitle = false } label: {
+                            Button(role: .destructive) { vm.showTitle = false; vm.save() } label: {
                                 Label("حذف", systemImage: "trash")
                             }
                         }
@@ -61,7 +63,7 @@ struct CanvasView: View {
                         .font(.custom(AppTheme.textFontName, size: 22))
                         .foregroundStyle(AppTheme.bodyText)
                         .contextMenu {
-                            Button(role: .destructive) { vm.showSubtitle = false } label: {
+                            Button(role: .destructive) { vm.showSubtitle = false; vm.save() } label: {
                                 Label("حذف", systemImage: "trash")
                             }
                         }

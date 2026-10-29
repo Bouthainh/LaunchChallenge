@@ -21,7 +21,7 @@ final class SoundManager {
         }
         player = try? AVAudioPlayer(contentsOf: url)
         player?.numberOfLoops = -1
-        player?.volume = 0.5
+        player?.volume = 0.2
         player?.prepareToPlay()
     }
 

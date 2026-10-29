@@ -22,3 +22,22 @@ struct CanvasElement: Identifiable {
 
     var font: Font { .custom(fontStyle.fontName, size: fontSize) }
 }
+struct SavedElement: Codable {
+    var kind: String 
+    var value: String
+    var image: String
+    var x: Double, y: Double
+    var scale: Double
+    var rotation: Double    
+    var colorHex: [Double]
+    var fontIsDisplay: Bool
+    var fontSize: Double
+}
+
+struct SavedCanvas: Codable {
+    var elements: [SavedElement]
+    var background: [Double]
+    var showTitle: Bool
+    var showSubtitle: Bool
+    var drawing: Data
+}
