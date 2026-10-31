@@ -69,7 +69,7 @@ struct GalleryView: View {
                   currentIndex == viewModel.stations.count - 1,
                   !viewModel.isLocked(currentIndex, store: store) else { return }
             
-            try? await Task.sleep(for: .seconds(12))
+            try? await Task.sleep(for: .seconds(5))
             guard !Task.isCancelled else { return }
             withAnimation { showEnd = true }
         }
