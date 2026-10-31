@@ -61,7 +61,7 @@ struct BagView: View {
                 SectionTitle(text: "رحلتك بين زخـارف المملكـة")
                 Spacer()
                 Text("المناطـق \(store.completed.count)/\(galleries.count)")
-                    .font(.custom(AppTheme.displayFontName, size: 20))
+                    .font(.custom(AppTheme.displayFontName, size: 18))
                     .foregroundStyle(AppTheme.bodyText)
             }
             Rectangle().fill(AppTheme.divider).frame(height: 1)
